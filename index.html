@@ -11,86 +11,56 @@
       --border:#cfcfcf;
       --row:#f3f8ff;
       --text:#1b1b1b;
+      --muted:#666;
+      --bg:#fff;
     }
     *{box-sizing:border-box}
     body{
       margin:0;
       font-family: Arial, Helvetica, sans-serif;
       color:var(--text);
-      background:#ffffff;
+      background:var(--bg);
     }
-    .wrap{
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 22px 16px 40px;
-    }
-    .header{
-      text-align:center;
-      line-height:1.25;
-      margin-bottom: 18px;
-    }
-    .header .u{font-weight:700; letter-spacing:.4px;}
-    .header .addr{font-weight:700; color:#1c4d7a;}
-    .header .tel{font-weight:700;}
-    .header .title{
-      margin-top:10px;
-      font-weight:800;
-      font-size:18px;
-      letter-spacing:.6px;
-    }
+    .wrap{max-width:1200px;margin:0 auto;padding:18px 14px 40px;}
+    .header{text-align:center;line-height:1.25;margin-bottom:14px;}
+    .header .u{font-weight:800;letter-spacing:.4px}
+    .header .addr{font-weight:700;color:#1c4d7a}
+    .header .tel{font-weight:700}
+    .header .title{margin-top:10px;font-weight:900;font-size:18px;letter-spacing:.6px}
 
     .controls{
-      display:flex;
-      flex-wrap:wrap;
-      align-items:end;
+      display:grid;
+      grid-template-columns: 1fr 220px auto auto;
       gap:10px;
+      align-items:end;
       margin: 14px 0 10px;
     }
-    .field{
-      display:flex;
-      flex-direction:column;
-      gap:6px;
-      min-width: 220px;
-      flex: 1;
-    }
-    .label{
-      font-size:14px;
-      font-weight:700;
-    }
+    .field{display:flex;flex-direction:column;gap:6px;min-width:0;}
+    .label{font-size:14px;font-weight:800;}
     input[type="text"], select{
       border:1px solid var(--border);
-      border-radius: 2px;
+      border-radius: 6px;
       padding:10px 10px;
       font-size:14px;
       outline:none;
+      background:white;
     }
     input[type="text"]:focus, select:focus{
       border-color: var(--blue);
-      box-shadow: 0 0 0 2px rgba(11,111,194,.12);
+      box-shadow: 0 0 0 3px rgba(11,111,194,.12);
     }
     .btn{
       border:1px solid var(--border);
       background:#efefef;
       padding:10px 12px;
       font-size:14px;
-      border-radius: 2px;
+      border-radius: 6px;
       cursor:pointer;
       user-select:none;
+      height: 40px;
+      white-space:nowrap;
     }
     .btn:hover{filter:brightness(.98)}
-    .btn.primary{
-      background: var(--blue);
-      border-color: var(--blue2);
-      color:white;
-      font-weight:700;
-    }
-    .btn.danger{
-      background:#ffecec;
-      border-color:#f2bcbc;
-      color:#8a1f1f;
-      font-weight:700;
-    }
-    .btn.small{padding:7px 10px; font-size:13px}
 
     .meta{
       font-size:13px;
@@ -99,28 +69,30 @@
       font-style: italic;
     }
 
+    /* Desktop table */
     .table-wrap{
       border:1px solid var(--border);
+      border-radius: 10px;
       overflow:auto;
       max-height: 70vh;
+      display:block;
     }
     table{
       width:100%;
       border-collapse:collapse;
       min-width: 980px;
+      background:white;
     }
     thead th{
-      position:sticky;
-      top:0;
-      z-index:2;
+      position:sticky; top:0; z-index:2;
       background: var(--blue);
       color:white;
       text-align:left;
       padding:10px 10px;
       font-size:14px;
       border-right:1px solid rgba(255,255,255,.18);
-      cursor:pointer;
       white-space:nowrap;
+      cursor:pointer;
     }
     thead th:last-child{border-right:none;}
     tbody td{
@@ -132,75 +104,76 @@
     }
     tbody td:last-child{border-right:none;}
     tbody tr:nth-child(even){background: var(--row);}
-    .actions{
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
-    }
+
     .pill{
       display:inline-block;
-      padding:2px 8px;
-      border-radius: 999px;
+      padding:3px 10px;
+      border-radius:999px;
       background:#eef5ff;
       border:1px solid #cfe2ff;
       font-size:12px;
+      color:#174a78;
     }
 
-    .footerbar{
+    /* Mobile cards */
+    .cards{
+      display:none;
+      gap:10px;
+    }
+    .card{
+      border:1px solid var(--border);
+      border-radius: 12px;
+      background:white;
+      padding:12px;
+      box-shadow: 0 8px 22px rgba(0,0,0,.06);
+    }
+    .card .name{
+      font-weight:900;
+      font-size:15px;
+      margin-bottom:8px;
+      line-height:1.25;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:8px 10px;
+    }
+    .kv .k{
+      font-size:11px;
+      color:var(--muted);
+      text-transform:uppercase;
+      letter-spacing:.6px
+    }
+    .kv .v{
+      font-size:14px;
+      font-weight:700;
+      margin-top:2px;
+      word-break:break-word
+    }
+    .card .bottom{
+      margin-top:10px;
       display:flex;
       justify-content:space-between;
       align-items:center;
-      gap:12px;
-      margin-top:10px;
+      gap:10px;
       flex-wrap:wrap;
     }
 
-    /* Modal */
-    .modal-backdrop{
-      position:fixed;
-      inset:0;
-      background: rgba(0,0,0,.35);
-      display:none;
-      align-items:center;
-      justify-content:center;
-      padding:18px;
-      z-index: 999;
+    .hint{
+      font-size:12px;
+      color:#555;
+      margin-top:10px;
+      line-height:1.4;
     }
-    .modal{
-      width:min(720px, 100%);
-      background:white;
-      border-radius: 6px;
-      border:1px solid var(--border);
-      box-shadow: 0 12px 32px rgba(0,0,0,.18);
-      overflow:hidden;
-    }
-    .modal .mhead{
-      background:#f6f6f6;
-      padding:12px 14px;
-      font-weight:800;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:10px;
-    }
-    .modal .mbody{
-      padding:14px;
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:12px;
-    }
-    .modal .mbody .field{min-width:0}
-    .modal .mfoot{
-      padding:12px 14px;
-      display:flex;
-      justify-content:flex-end;
-      gap:10px;
-      border-top:1px solid var(--border);
-      background:#fbfbfb;
-    }
-    @media (max-width: 720px){
-      table{min-width: 820px;}
-      .modal .mbody{grid-template-columns:1fr;}
+
+    /* Responsive switch */
+    @media (max-width: 900px){
+      .controls{grid-template-columns: 1fr; }
+      .btn{width:100%;}
+      .table-wrap{display:none;}
+      .cards{display:grid;}
+      .wrap{padding:16px 12px 30px;}
+      .header .title{font-size:16px;}
     }
   </style>
 </head>
@@ -216,33 +189,23 @@
     <div class="controls">
       <div class="field">
         <div class="label">Search</div>
-        <input id="searchInput" type="text" placeholder="Type to search office, local, building, category..." />
+        <input id="searchInput" type="text" placeholder="Type keywords (e.g. vpa cs 419, clinic 300, guard)..." />
       </div>
 
-      <div class="field" style="max-width:200px;">
-        <div class="label">Building</div>
-        <select id="buildingFilter">
-          <option value="">All Buildings</option>
-        </select>
-      </div>
-
-      <div class="field" style="max-width:200px;">
+      <div class="field">
         <div class="label">Category</div>
         <select id="categoryFilter">
-          <option value="">All Categories</option>
+          <option value="">All</option>
         </select>
       </div>
 
       <button class="btn" id="clearBtn">Clear</button>
-      <button class="btn primary" id="addBtn">+ Add Office</button>
-      <button class="btn" id="exportBtn">Export JSON</button>
-      <button class="btn" id="importBtn">Import JSON</button>
-      <input id="importFile" type="file" accept="application/json" hidden />
-      <button class="btn danger" id="resetBtn" title="Reset to original directory data">Reset Data</button>
+      <button class="btn" id="refreshBtn" title="Reload latest data from Google Sheet">Refresh</button>
     </div>
 
     <div class="meta" id="metaLine">Loading...</div>
 
+    <!-- Desktop table -->
     <div class="table-wrap">
       <table id="dirTable">
         <thead>
@@ -252,339 +215,79 @@
             <th data-key="phone">Phone Number</th>
             <th data-key="building">Building</th>
             <th data-key="category">Category</th>
-            <th data-key="_actions" style="cursor:default;">Actions</th>
           </tr>
         </thead>
         <tbody id="tbody"></tbody>
       </table>
     </div>
 
-    <div class="footerbar">
-      <div style="font-size:13px;color:#444;">
-        💾 Your edits are saved in this browser. Use <b>Export JSON</b> as backup.
-      </div>
-      <div style="font-size:13px;color:#444;">
-        ↕️ Sort: click column headers
-      </div>
-    </div>
-  </div>
+    <!-- Mobile cards -->
+    <div class="cards" id="cards"></div>
 
-  <!-- Modal -->
-  <div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true">
-    <div class="modal">
-      <div class="mhead">
-        <div id="modalTitle">Edit Office</div>
-        <button class="btn small" id="closeModalBtn">Close</button>
-      </div>
-      <div class="mbody">
-        <div class="field">
-          <div class="label">Office/Department Name *</div>
-          <input type="text" id="mName" />
-        </div>
-        <div class="field">
-          <div class="label">Local</div>
-          <input type="text" id="mLocal" placeholder="e.g. 300" />
-        </div>
-        <div class="field">
-          <div class="label">Phone Number</div>
-          <input type="text" id="mPhone" placeholder="e.g. 8524-2011" />
-        </div>
-        <div class="field">
-          <div class="label">Building</div>
-          <input type="text" id="mBuilding" placeholder="e.g. CS BUILDING" />
-        </div>
-        <div class="field">
-          <div class="label">Category</div>
-          <input type="text" id="mCategory" placeholder="e.g. Administration" />
-        </div>
-        <div class="field" style="grid-column: 1 / -1;">
-          <div class="label">Search Keywords (optional)</div>
-          <input type="text" id="mKeywords" placeholder="Additional search terms" />
-        </div>
-      </div>
-      <div class="mfoot">
-        <button class="btn" id="cancelBtn">Cancel</button>
-        <button class="btn primary" id="saveBtn">Save</button>
-      </div>
+    <div class="hint">
+      <b>Admin editing:</b> Update the Google Sheet (Directory tab). This website is view/search only, then it updates on refresh.<br/>
+      <b>Search tips:</b> case-insensitive, partial keywords, and multi-keyword search (example: <code>cs 419</code>, <code>vpa admin</code>, <code>clinic 300</code>).
     </div>
   </div>
 
 <script>
-// Complete Adamson University Directory - All 200+ entries from images
-const STORAGE_KEY = "adamson_directory_complete";
+/** Your Apps Script Web App URL (must end with /exec) */
+const API_URL = "https://script.google.com/macros/s/AKfycbxu2FSMmPj_D3rcgnvqOOQrixrUMCn_ZTcdnRmhgI2OxgrSqT-K9WosdramgyogCUlwLw/exec";
 
-const SEED = [
-  // SECURITY OFFICE
-  {id:crypto.randomUUID(), name:"BED GATE GUARD", local:"127", phone:"", building:"SECURITY OFFICE", category:"Security", keywords:"bed gate guard security"},
-  {id:crypto.randomUUID(), name:"CS GATE GUARD", local:"128", phone:"", building:"SECURITY OFFICE", category:"Security", keywords:"cs gate guard security"},
-  {id:crypto.randomUUID(), name:"MARIAN GUARD", local:"142", phone:"", building:"SECURITY OFFICE", category:"Security", keywords:"marian guard security"},
-  {id:crypto.randomUUID(), name:"MERALCO GATE GUARD", local:"147", phone:"", building:"SECURITY OFFICE", category:"Security", keywords:"meralco gate guard security"},
-  {id:crypto.randomUUID(), name:"OZ GATE GUARD", local:"404", phone:"", building:"SECURITY OFFICE", category:"Security", keywords:"oz gate guard security"},
-  {id:crypto.randomUUID(), name:"SECURITY MAIN OFFICE", local:"215", phone:"", building:"SECURITY OFFICE", category:"Security", keywords:"security main office"},
-  {id:crypto.randomUUID(), name:"ST GATE GUARD", local:"252", phone:"", building:"SECURITY OFFICE", category:"Security", keywords:"st gate guard security"},
-  {id:crypto.randomUUID(), name:"SV GATE GUARD", local:"913", phone:"", building:"SECURITY OFFICE", category:"Security", keywords:"sv gate guard security"},
-  
-  // HEALTH SERVICES
-  {id:crypto.randomUUID(), name:"MAIN CLINIC @ ST Building", local:"200", phone:"", building:"HEALTH SERVICES (CLINIC)", category:"Health", keywords:"main clinic st building health services"},
-  {id:crypto.randomUUID(), name:"CS BUILDING CLINIC", local:"104", phone:"", building:"HEALTH SERVICES (CLINIC)", category:"Health", keywords:"cs building clinic health services"},
-  {id:crypto.randomUUID(), name:"SV BUILDING CLINIC", local:"300", phone:"", building:"HEALTH SERVICES (CLINIC)", category:"Health", keywords:"sv building clinic health services"},
-  
-  // GUIDANCE OFFICE
-  {id:crypto.randomUUID(), name:"ARCHITECTURE/SHS-11 @ CS Building", local:"157", phone:"", building:"GUIDANCE OFFICE", category:"Guidance", keywords:"architecture shs-11 cs building guidance"},
-  {id:crypto.randomUUID(), name:"BED/SHS-12 @ FRC Building", local:"136", phone:"", building:"GUIDANCE OFFICE", category:"Guidance", keywords:"bed shs-12 frc building guidance"},
-  {id:crypto.randomUUID(), name:"BUSINESS ADMINISTRATION", local:"247", phone:"", building:"GUIDANCE OFFICE", category:"Guidance", keywords:"business administration guidance"},
-  {id:crypto.randomUUID(), name:"ENGINEERING @ ST Building", local:"229", phone:"", building:"GUIDANCE OFFICE", category:"Guidance", keywords:"engineering st building guidance"},
-  {id:crypto.randomUUID(), name:"MAIN OFFICE @ ST Building", local:"207", phone:"", building:"GUIDANCE OFFICE", category:"Guidance", keywords:"main office st building guidance"},
-  {id:crypto.randomUUID(), name:"PLACEMENT @ ST Building", local:"232", phone:"", building:"GUIDANCE OFFICE", category:"Guidance", keywords:"placement st building guidance"},
-  {id:crypto.randomUUID(), name:"SCIENCE/CELA/PHARMACY/NURSING", local:"212", phone:"", building:"GUIDANCE OFFICE", category:"Guidance", keywords:"science cela pharmacy nursing guidance"},
-  {id:crypto.randomUUID(), name:"TESTING @ ST Building", local:"241", phone:"", building:"GUIDANCE OFFICE", category:"Guidance", keywords:"testing st building guidance"},
-  
-  // MAINTENANCE
-  {id:crypto.randomUUID(), name:"AIRCON TECHNICIAN", local:"120", phone:"", building:"MAINTENANCE", category:"Maintenance", keywords:"aircon technician maintenance"},
-  {id:crypto.randomUUID(), name:"CCTV TECHNICIAN", local:"151", phone:"", building:"MAINTENANCE", category:"Maintenance", keywords:"cctv technician maintenance"},
-  {id:crypto.randomUUID(), name:"ELECTRICAL TECHNICIAN", local:"777", phone:"", building:"MAINTENANCE", category:"Maintenance", keywords:"electrical technician maintenance"},
-  {id:crypto.randomUUID(), name:"HOUSEKEEPING", local:"158", phone:"", building:"MAINTENANCE", category:"Maintenance", keywords:"housekeeping maintenance"},
-  {id:crypto.randomUUID(), name:"MOTOR POOL", local:"144", phone:"", building:"MAINTENANCE", category:"Maintenance", keywords:"motor pool maintenance"},
-  {id:crypto.randomUUID(), name:"PLUMBER", local:"424", phone:"", building:"MAINTENANCE", category:"Maintenance", keywords:"plumber maintenance"},
-  {id:crypto.randomUUID(), name:"TELEPHONE TECHNICIAN", local:"555", phone:"", building:"MAINTENANCE", category:"Maintenance", keywords:"telephone technician maintenance"},
-  {id:crypto.randomUUID(), name:"PABX ROOM", local:"306", phone:"", building:"MAINTENANCE", category:"Maintenance", keywords:"pabx room maintenance"},
-  {id:crypto.randomUUID(), name:"PABX ROOM 2", local:"307", phone:"", building:"MAINTENANCE", category:"Maintenance", keywords:"pabx room 2 maintenance"},
-  
-  // CS BUILDING
-  {id:crypto.randomUUID(), name:"AAU TELEPHONE OPERATOR", local:"0", phone:"", building:"CS BUILDING", category:"Administration", keywords:"aau telephone operator"},
-  {id:crypto.randomUUID(), name:"ACCOUNTING /STUDENTS ACCOUNTS", local:"106", phone:"", building:"CS BUILDING", category:"Accounting", keywords:"accounting students accounts"},
-  {id:crypto.randomUUID(), name:"ACCOUNTING DIRECTOR", local:"125", phone:"", building:"CS BUILDING", category:"Accounting", keywords:"accounting director"},
-  {id:crypto.randomUUID(), name:"ACCOUNTING OFFICE", local:"135", phone:"", building:"CS BUILDING", category:"Accounting", keywords:"accounting office"},
-  {id:crypto.randomUUID(), name:"ARCHITECTURE FACULTY ROOM", local:"146", phone:"", building:"CS BUILDING", category:"Faculty", keywords:"architecture faculty room"},
-  {id:crypto.randomUUID(), name:"ADMISSIONS OFFICE / A.S.R.O.", local:"102", phone:"8557-1823", building:"CS BUILDING", category:"Admissions", keywords:"admissions office asro"},
-  {id:crypto.randomUUID(), name:"A.S.R.O. DIRECTOR", local:"342", phone:"", building:"CS BUILDING", category:"Administration", keywords:"asro director"},
-  {id:crypto.randomUUID(), name:"ARCHITECTURE DEAN'S OFFICE", local:"132", phone:"", building:"CS BUILDING", category:"Academic", keywords:"architecture dean office"},
-  {id:crypto.randomUUID(), name:"BUDGET OFFICE", local:"116", phone:"8524-8003", building:"CS BUILDING", category:"Finance", keywords:"budget office"},
-  {id:crypto.randomUUID(), name:"CENTER FOR INNOVATIVE LEARNING", local:"330", phone:"", building:"CS BUILDING", category:"Academic", keywords:"center innovative learning"},
-  {id:crypto.randomUUID(), name:"CASHIER'S OFFICE", local:"145", phone:"", building:"CS BUILDING", category:"Finance", keywords:"cashier office"},
-  {id:crypto.randomUUID(), name:"CONTROLLER", local:"112", phone:"", building:"CS BUILDING", category:"Finance", keywords:"controller"},
-  {id:crypto.randomUUID(), name:"GENERAL ACCOUNTING OFC.", local:"140", phone:"", building:"CS BUILDING", category:"Accounting", keywords:"general accounting office"},
-  {id:crypto.randomUUID(), name:"H.R.M.D.O. DIRECTOR", local:"239", phone:"", building:"CS BUILDING", category:"HR", keywords:"hrmdo director"},
-  {id:crypto.randomUUID(), name:"H.R.M.D.O. PAYROLL", local:"251", phone:"", building:"CS BUILDING", category:"HR", keywords:"hrmdo payroll"},
-  {id:crypto.randomUUID(), name:"H.R.M.D.O. RECORDS", local:"211", phone:"", building:"CS BUILDING", category:"HR", keywords:"hrmdo records"},
-  {id:crypto.randomUUID(), name:"H.R.M.D.O. RECRUITMENT", local:"233", phone:"", building:"CS BUILDING", category:"HR", keywords:"hrmdo recruitment"},
-  {id:crypto.randomUUID(), name:"I.D.E.A. DIRECTOR", local:"150", phone:"", building:"CS BUILDING", category:"Administration", keywords:"idea director"},
-  {id:crypto.randomUUID(), name:"I.D.E.A. PUBLICATION OFFICE", local:"122", phone:"", building:"CS BUILDING", category:"Publications", keywords:"idea publication office"},
-  {id:crypto.randomUUID(), name:"I.D.E.A. PHOTOGRAPHY STUDIO", local:"148", phone:"", building:"CS BUILDING", category:"Media", keywords:"idea photography studio"},
-  {id:crypto.randomUUID(), name:"INTERNAL AUDIT", local:"126", phone:"", building:"CS BUILDING", category:"Finance", keywords:"internal audit"},
-  {id:crypto.randomUUID(), name:"LEGAL COUNSEL", local:"141", phone:"", building:"CS BUILDING", category:"Legal", keywords:"legal counsel"},
-  {id:crypto.randomUUID(), name:"PRESIDENT'S OFFICE", local:"114", phone:"8521-6890", building:"CS BUILDING", category:"Administration", keywords:"president office"},
-  {id:crypto.randomUUID(), name:"PRESIDENT'S OFFICE - I.P.P.D.O.", local:"118", phone:"", building:"CS BUILDING", category:"Administration", keywords:"president office ippdo"},
-  {id:crypto.randomUUID(), name:"PRESIDENTS OFFICE SECRETARY", local:"115", phone:"", building:"CS BUILDING", category:"Administration", keywords:"presidents office secretary"},
-  {id:crypto.randomUUID(), name:"REGISTRAR DIRECTOR", local:"154", phone:"", building:"CS BUILDING", category:"Registrar", keywords:"registrar director"},
-  {id:crypto.randomUUID(), name:"REGISTRAR INFORMATION", local:"129", phone:"", building:"CS BUILDING", category:"Registrar", keywords:"registrar information"},
-  {id:crypto.randomUUID(), name:"REGISTRAR PROGRAMMING", local:"133", phone:"", building:"CS BUILDING", category:"Registrar", keywords:"registrar programming"},
-  {id:crypto.randomUUID(), name:"REGISTRAR RECORDS-01", local:"100", phone:"", building:"CS BUILDING", category:"Registrar", keywords:"registrar records"},
-  {id:crypto.randomUUID(), name:"REGISTRAR RECORDS-02", local:"137", phone:"", building:"CS BUILDING", category:"Registrar", keywords:"registrar records"},
-  {id:crypto.randomUUID(), name:"REGISTRAR'S OFFICE", local:"", phone:"8522-5528", building:"CS BUILDING", category:"Registrar", keywords:"registrar office"},
-  {id:crypto.randomUUID(), name:"SENIOR HIGH SCHOOL FACULTY ROOM", local:"203", phone:"", building:"CS BUILDING", category:"Faculty", keywords:"senior high school faculty room"},
-  {id:crypto.randomUUID(), name:"SENIOR HIGH SCHOOL PRINCIPAL'S OFFICE", local:"134", phone:"", building:"CS BUILDING", category:"Academic", keywords:"senior high school principal office"},
-  {id:crypto.randomUUID(), name:"TREASURER - ADMINISTRATIVE ASSISTANT", local:"124", phone:"", building:"CS BUILDING", category:"Finance", keywords:"treasurer administrative assistant"},
-  {id:crypto.randomUUID(), name:"VP FINANCIAL AFFAIRS", local:"152", phone:"", building:"CS BUILDING", category:"Administration", keywords:"vp financial affairs"},
-  {id:crypto.randomUUID(), name:"VP FINANCE SECRETARY", local:"143", phone:"", building:"CS BUILDING", category:"Administration", keywords:"vp finance secretary"},
-  {id:crypto.randomUUID(), name:"VP ADMINISTRATIVE AFFAIRS", local:"109", phone:"", building:"CS BUILDING", category:"Administration", keywords:"vp administrative affairs"},
-  {id:crypto.randomUUID(), name:"VPA SECRETARY", local:"110", phone:"", building:"CS BUILDING", category:"Administration", keywords:"vpa secretary"},
-  {id:crypto.randomUUID(), name:"VPA OFFICE 2", local:"111", phone:"", building:"CS BUILDING", category:"Administration", keywords:"vpa office"},
-  {id:crypto.randomUUID(), name:"VP ACADEMIC AFFAIRS", local:"419", phone:"", building:"CS BUILDING", category:"Administration", keywords:"vp academic affairs"},
-  {id:crypto.randomUUID(), name:"VPAA SECRETARY", local:"130", phone:"", building:"CS BUILDING", category:"Administration", keywords:"vpaa secretary"},
-  {id:crypto.randomUUID(), name:"VPAA EXECUTIVE ASSISTANT", local:"138", phone:"", building:"CS BUILDING", category:"Administration", keywords:"vpaa executive assistant"},
-  {id:crypto.randomUUID(), name:"VPAA OFFICE / C.P.D. OFFICE", local:"422", phone:"", building:"CS BUILDING", category:"Administration", keywords:"vpaa office cpd office"},
-  {id:crypto.randomUUID(), name:"VPAA - PROGRAMS AND STANDARDS", local:"265", phone:"", building:"CS BUILDING", category:"Administration", keywords:"vpaa programs standards"},
-  {id:crypto.randomUUID(), name:"A.U.T.R.D.C. OFFICE", local:"153", phone:"", building:"CS BUILDING", category:"Research", keywords:"autrdc office"},
-  {id:crypto.randomUUID(), name:"C.R.D. OFFICE", local:"", phone:"", building:"CS BUILDING", category:"Research", keywords:"crd office"},
-  
-  // OLD CHEMISTRY BLDG
-  {id:crypto.randomUUID(), name:"BUSINESS AFFAIRS OFFICE", local:"107", phone:"8400-0921", building:"OLD CHEMISTRY BLDG.", category:"Administration", keywords:"business affairs office"},
-  {id:crypto.randomUUID(), name:"CAMPUS SECURITY & SAFETY", local:"103", phone:"8559-3394", building:"OLD CHEMISTRY BLDG.", category:"Security", keywords:"campus security safety"},
-  {id:crypto.randomUUID(), name:"HOSPITALITY MANAGEMENT DEPT.", local:"117", phone:"", building:"OLD CHEMISTRY BLDG.", category:"Academic", keywords:"hospitality management department"},
-  {id:crypto.randomUUID(), name:"HOSPITALITY MANAGEMENT LAB", local:"213", phone:"", building:"OLD CHEMISTRY BLDG.", category:"Academic", keywords:"hospitality management lab"},
-  {id:crypto.randomUUID(), name:"PURCHASING/LOGISTICS", local:"119", phone:"8524-3027", building:"OLD CHEMISTRY BLDG.", category:"Administration", keywords:"purchasing logistics"},
-  {id:crypto.randomUUID(), name:"PFSSO DIRECTOR", local:"101", phone:"", building:"OLD CHEMISTRY BLDG.", category:"Administration", keywords:"pfsso director"},
-  {id:crypto.randomUUID(), name:"PFSSO SECRETARY", local:"121", phone:"", building:"OLD CHEMISTRY BLDG.", category:"Administration", keywords:"pfsso secretary"},
-  {id:crypto.randomUUID(), name:"PFSSO VENUE RESERVATION", local:"105", phone:"", building:"OLD CHEMISTRY BLDG.", category:"Administration", keywords:"pfsso venue reservation"},
-  {id:crypto.randomUUID(), name:"PFSSO TRANSPORTATION", local:"103", phone:"", building:"OLD CHEMISTRY BLDG.", category:"Administration", keywords:"pfsso transportation"},
-  {id:crypto.randomUUID(), name:"PFSSO HOUSEKEEPING", local:"316", phone:"", building:"OLD CHEMISTRY BLDG.", category:"Maintenance", keywords:"pfsso housekeeping"},
-  {id:crypto.randomUUID(), name:"PFSSO CIVIL & ARCHITECTURAL", local:"121", phone:"", building:"OLD CHEMISTRY BLDG.", category:"Maintenance", keywords:"pfsso civil architectural"},
-  {id:crypto.randomUUID(), name:"PFSSO MECHANICAL WORKS", local:"315", phone:"", building:"OLD CHEMISTRY BLDG.", category:"Maintenance", keywords:"pfsso mechanical works"},
-  {id:crypto.randomUUID(), name:"W.I.C.O.", local:"123", phone:"", building:"OLD CHEMISTRY BLDG.", category:"Administration", keywords:"wico"},
-  
-  // FALCON RADIO BUILDING
-  {id:crypto.randomUUID(), name:"COMMUNICATION DEPT.", local:"159", phone:"", building:"FALCON RADIO BUILDING", category:"Academic", keywords:"communication department"},
-  {id:crypto.randomUUID(), name:"GARDEN CAFE", local:"343", phone:"", building:"FALCON RADIO BUILDING", category:"Food", keywords:"garden cafe"},
-  
-  // JPFRC BUILDING
-  {id:crypto.randomUUID(), name:"A.U.S.G. OFFICE", local:"230", phone:"", building:"JPFRC BUILDING", category:"Student Affairs", keywords:"ausg office"},
-  {id:crypto.randomUUID(), name:"ADAMSON CHRONICLE", local:"249", phone:"", building:"JPFRC BUILDING", category:"Publications", keywords:"adamson chronicle"},
-  {id:crypto.randomUUID(), name:"B.E.D. CAMPUS MINISTRY", local:"149", phone:"", building:"JPFRC BUILDING", category:"Campus Ministry", keywords:"bed campus ministry"},
-  {id:crypto.randomUUID(), name:"B.E.D. COORDINATOR OFFICE", local:"172", phone:"", building:"JPFRC BUILDING", category:"Academic", keywords:"bed coordinator office"},
-  {id:crypto.randomUUID(), name:"B.E.D. ELEMENTARY FACULTY ROOM", local:"322", phone:"", building:"JPFRC BUILDING", category:"Faculty", keywords:"bed elementary faculty room"},
-  {id:crypto.randomUUID(), name:"B.E.D. ELEMENTARY DEPT.", local:"231", phone:"", building:"JPFRC BUILDING", category:"Academic", keywords:"bed elementary department"},
-  {id:crypto.randomUUID(), name:"B.E.D. JUNIOR HIGH SCHOOL", local:"328", phone:"", building:"JPFRC BUILDING", category:"Academic", keywords:"bed junior high school"},
-  {id:crypto.randomUUID(), name:"B.E.D. JUNIOR HIGH FACULTY ROOM", local:"113", phone:"", building:"JPFRC BUILDING", category:"Faculty", keywords:"bed junior high faculty room"},
-  {id:crypto.randomUUID(), name:"B.E.D. PRINCIPAL'S OFFICE", local:"108", phone:"", building:"JPFRC BUILDING", category:"Academic", keywords:"bed principal office"},
-  {id:crypto.randomUUID(), name:"B.E.D. SENTINEL OFFICE", local:"171", phone:"", building:"JPFRC BUILDING", category:"Publications", keywords:"bed sentinel office"},
-  {id:crypto.randomUUID(), name:"O.S.A. DEVELOPMENT", local:"254", phone:"", building:"JPFRC BUILDING", category:"Student Affairs", keywords:"osa development"},
-  {id:crypto.randomUUID(), name:"O.S.A. DISCIPLINE", local:"257", phone:"", building:"JPFRC BUILDING", category:"Student Affairs", keywords:"osa discipline"},
-  {id:crypto.randomUUID(), name:"O.S.A. MAIN OFFICE", local:"243", phone:"", building:"JPFRC BUILDING", category:"Student Affairs", keywords:"osa main office"},
-  {id:crypto.randomUUID(), name:"O.S.A.S / S.S.V.P. - O.S.G.P", local:"240", phone:"", building:"JPFRC BUILDING", category:"Student Affairs", keywords:"osas ssvp osgp"},
-  {id:crypto.randomUUID(), name:"O.S.A.S. SECRETARY", local:"226", phone:"", building:"JPFRC BUILDING", category:"Student Affairs", keywords:"osas secretary"},
-  {id:crypto.randomUUID(), name:"VP STUDENT AFFAIRS", local:"250", phone:"", building:"JPFRC BUILDING", category:"Administration", keywords:"vp student affairs"},
-  {id:crypto.randomUUID(), name:"R.O.T.C. OFFICE", local:"318", phone:"", building:"JPFRC BUILDING", category:"Student Affairs", keywords:"rotc office"},
-  
-  // ST BUILDING
-  {id:crypto.randomUUID(), name:"BIOLOGY DEPT", local:"204", phone:"", building:"ST BUILDING", category:"Academic", keywords:"biology department"},
-  {id:crypto.randomUUID(), name:"BIOLOGY LAB", local:"210", phone:"", building:"ST BUILDING", category:"Academic", keywords:"biology lab"},
-  {id:crypto.randomUUID(), name:"B.A. DEAN'S OFFICE", local:"234", phone:"", building:"ST BUILDING", category:"Academic", keywords:"ba dean office"},
-  {id:crypto.randomUUID(), name:"B.A. FACULTY ROOM", local:"205", phone:"", building:"ST BUILDING", category:"Faculty", keywords:"ba faculty room"},
-  {id:crypto.randomUUID(), name:"B.A. FINANCE & ECONOMICS", local:"266", phone:"", building:"ST BUILDING", category:"Academic", keywords:"ba finance economics"},
-  {id:crypto.randomUUID(), name:"C.E.L.A. DEAN'S OFFICE", local:"254", phone:"", building:"ST BUILDING", category:"Academic", keywords:"cela dean office"},
-  {id:crypto.randomUUID(), name:"C.E.L.A. DEAN'S SECRETARY", local:"252", phone:"", building:"ST BUILDING", category:"Academic", keywords:"cela dean secretary"},
-  {id:crypto.randomUUID(), name:"CAMPUS MINISTRY", local:"221", phone:"8523-2626", building:"ST BUILDING", category:"Campus Ministry", keywords:"campus ministry"},
-  {id:crypto.randomUUID(), name:"CENTER FOR LANGUAGE LEARNING", local:"220", phone:"", building:"ST BUILDING", category:"Academic", keywords:"center language learning"},
-  {id:crypto.randomUUID(), name:"COOP OFFICE", local:"258", phone:"", building:"ST BUILDING", category:"Administration", keywords:"coop office"},
-  {id:crypto.randomUUID(), name:"CULTURAL AFFAIRS OFFICE", local:"263", phone:"8521-8609", building:"ST BUILDING", category:"Student Affairs", keywords:"cultural affairs office"},
-  {id:crypto.randomUUID(), name:"CUSTOMS ADMINISTRATION", local:"255", phone:"8522-0141", building:"ST BUILDING", category:"Academic", keywords:"customs administration"},
-  {id:crypto.randomUUID(), name:"EDUCATION DEPT.", local:"201", phone:"", building:"ST BUILDING", category:"Academic", keywords:"education department"},
-  {id:crypto.randomUUID(), name:"FACULTY SAVINGS", local:"260", phone:"8522-0121", building:"ST BUILDING", category:"Finance", keywords:"faculty savings"},
-  {id:crypto.randomUUID(), name:"FOREIGN LANGUAGE DEPT.", local:"214", phone:"", building:"ST BUILDING", category:"Academic", keywords:"foreign language department"},
-  {id:crypto.randomUUID(), name:"I.R.E.D. OFFICE", local:"224", phone:"", building:"ST BUILDING", category:"Administration", keywords:"ired office"},
-  {id:crypto.randomUUID(), name:"I.T.C. DIRECTOR", local:"208", phone:"", building:"ST BUILDING", category:"IT", keywords:"itc director"},
-  {id:crypto.randomUUID(), name:"I.T.C. INTERNET OFFICE", local:"219", phone:"", building:"ST BUILDING", category:"IT", keywords:"itc internet office"},
-  {id:crypto.randomUUID(), name:"I.T.C. MAINTENANCE", local:"223", phone:"", building:"ST BUILDING", category:"IT", keywords:"itc maintenance"},
-  {id:crypto.randomUUID(), name:"I.T.C. SECRETARY", local:"236", phone:"", building:"ST BUILDING", category:"IT", keywords:"itc secretary"},
-  {id:crypto.randomUUID(), name:"I.T.C. SYSTEM DEVELOPMENT", local:"218", phone:"", building:"ST BUILDING", category:"IT", keywords:"itc system development"},
-  {id:crypto.randomUUID(), name:"L.A. FACULTY ROOM", local:"261", phone:"", building:"ST BUILDING", category:"Faculty", keywords:"la faculty room"},
-  {id:crypto.randomUUID(), name:"MATHEMATICS DEPT.", local:"206", phone:"", building:"ST BUILDING", category:"Academic", keywords:"mathematics department"},
-  {id:crypto.randomUUID(), name:"MANAGEMENT/MARKETING DEPT.", local:"209", phone:"", building:"ST BUILDING", category:"Academic", keywords:"management marketing department"},
-  {id:crypto.randomUUID(), name:"O.U.R. DIRECTOR", local:"202", phone:"", building:"ST BUILDING", category:"Administration", keywords:"our director"},
-  {id:crypto.randomUUID(), name:"O.U.R. SECRETARY", local:"605", phone:"", building:"ST BUILDING", category:"Administration", keywords:"our secretary"},
-  {id:crypto.randomUUID(), name:"PHARMACY DEAN'S OFFICE", local:"319", phone:"", building:"ST BUILDING", category:"Academic", keywords:"pharmacy dean office"},
-  {id:crypto.randomUUID(), name:"PSYCHOLOGY DEPT", local:"304", phone:"", building:"ST BUILDING", category:"Academic", keywords:"psychology department"},
-  {id:crypto.randomUUID(), name:"SCIENCE DEAN'S OFFICE", local:"223", phone:"", building:"ST BUILDING", category:"Academic", keywords:"science dean office"},
-  {id:crypto.randomUUID(), name:"SOCIAL SCIENCE DEPT", local:"223", phone:"", building:"ST BUILDING", category:"Academic", keywords:"social science department"},
-  {id:crypto.randomUUID(), name:"SPEECH LAB", local:"225", phone:"", building:"ST BUILDING", category:"Academic", keywords:"speech lab"},
-  
-  // L.W. BUILDING
-  {id:crypto.randomUUID(), name:"COLLEGE OF NURSING", local:"", phone:"8536-2099", building:"L.W. BUILDING", category:"Academic", keywords:"college nursing"},
-  {id:crypto.randomUUID(), name:"LIBRARY - MAIN", local:"248", phone:"", building:"L.W. BUILDING", category:"Library", keywords:"library main"},
-  {id:crypto.randomUUID(), name:"LIBRARY - SECOND FLOOR", local:"131", phone:"", building:"L.W. BUILDING", category:"Library", keywords:"library second floor"},
-  
-  // OZ BUILDING
-  {id:crypto.randomUUID(), name:"AUDIOVISUAL ROOM - 3RD FLR.", local:"228", phone:"", building:"OZ BUILDING", category:"Media", keywords:"audiovisual room 3rd floor"},
-  {id:crypto.randomUUID(), name:"CHEMICAL ENGINEERING DEPT.", local:"410", phone:"", building:"OZ BUILDING", category:"Academic", keywords:"chemical engineering department"},
-  {id:crypto.randomUUID(), name:"CHEMICAL ENGINEERING LAB", local:"416", phone:"", building:"OZ BUILDING", category:"Academic", keywords:"chemical engineering lab"},
-  {id:crypto.randomUUID(), name:"CHEMISTRY DEPT.", local:"428", phone:"", building:"OZ BUILDING", category:"Academic", keywords:"chemistry department"},
-  {id:crypto.randomUUID(), name:"CHEMISTRY LAB", local:"413", phone:"", building:"OZ BUILDING", category:"Academic", keywords:"chemistry lab"},
-  {id:crypto.randomUUID(), name:"CIVIL ENGINEERING DEPT.", local:"407", phone:"", building:"OZ BUILDING", category:"Academic", keywords:"civil engineering department"},
-  {id:crypto.randomUUID(), name:"CIVIL ENGINEERING LAB", local:"425", phone:"", building:"OZ BUILDING", category:"Academic", keywords:"civil engineering lab"},
-  {id:crypto.randomUUID(), name:"COMPUTER ENGINEERING DEPT.", local:"409", phone:"", building:"OZ BUILDING", category:"Academic", keywords:"computer engineering department"},
-  {id:crypto.randomUUID(), name:"COMPUTER ENGG DISPENSING ROOM", local:"421", phone:"", building:"OZ BUILDING", category:"Academic", keywords:"computer engineering dispensing room"},
-  {id:crypto.randomUUID(), name:"E.C.E. LAB.", local:"425", phone:"", building:"OZ BUILDING", category:"Academic", keywords:"ece lab"},
-  {id:crypto.randomUUID(), name:"ELECTRICAL ENGINEERING DEPT.", local:"408", phone:"", building:"OZ BUILDING", category:"Academic", keywords:"electrical engineering department"},
-  {id:crypto.randomUUID(), name:"ELECTRICAL ENGINEERING LAB", local:"403", phone:"", building:"OZ BUILDING", category:"Academic", keywords:"electrical engineering lab"},
-  {id:crypto.randomUUID(), name:"ELECTRONICS ENGINEERING DEPT.", local:"403", phone:"", building:"OZ BUILDING", category:"Academic", keywords:"electronics engineering department"},
-  {id:crypto.randomUUID(), name:"ENGINEERING DEAN SECRETARY", local:"405", phone:"", building:"OZ BUILDING", category:"Academic", keywords:"engineering dean secretary"},
-  {id:crypto.randomUUID(), name:"ENGINEERING DEANS OFFICE", local:"406", phone:"", building:"OZ BUILDING", category:"Academic", keywords:"engineering dean office"},
-  {id:crypto.randomUUID(), name:"INDUSTRIAL ENGOMECH ENGG LAB", local:"401", phone:"", building:"OZ BUILDING", category:"Academic", keywords:"industrial engineering mechanical engineering lab"},
-  {id:crypto.randomUUID(), name:"INDUSTRIAL ENGINEERING DEPT", local:"", phone:"", building:"OZ BUILDING", category:"Academic", keywords:"industrial engineering department"},
-  {id:crypto.randomUUID(), name:"MINING GEOLOGY CERAMICS ENGG DEPT", local:"411", phone:"", building:"OZ BUILDING", category:"Academic", keywords:"mining geology ceramics engineering department"},
-  {id:crypto.randomUUID(), name:"MECH. ENGINEERING I.P.C. ROOM", local:"402", phone:"", building:"OZ BUILDING", category:"Academic", keywords:"mechanical engineering ipc room"},
-  {id:crypto.randomUUID(), name:"MECHANICAL ENGINEERING DEPT", local:"414", phone:"", building:"OZ BUILDING", category:"Academic", keywords:"mechanical engineering department"},
-  {id:crypto.randomUUID(), name:"PHYSICS DEPT", local:"400", phone:"", building:"OZ BUILDING", category:"Academic", keywords:"physics department"},
-  {id:crypto.randomUUID(), name:"PHYSICS LAB", local:"412", phone:"", building:"OZ BUILDING", category:"Academic", keywords:"physics lab"},
-  
-  // SV BUILDING
-  {id:crypto.randomUUID(), name:"A.U.F.E.A OFFICE", local:"", phone:"", building:"SV BUILDING", category:"Administration", keywords:"aufea office"},
-  {id:crypto.randomUUID(), name:"ADAMSON UNIVERSITY MUSEUM", local:"323", phone:"", building:"SV BUILDING", category:"Cultural", keywords:"adamson university museum"},
-  {id:crypto.randomUUID(), name:"ALUMNI OFFICE", local:"303", phone:"", building:"SV BUILDING", category:"Alumni", keywords:"alumni office"},
-  {id:crypto.randomUUID(), name:"COLLEGE OF LAW", local:"311", phone:"", building:"SV BUILDING", category:"Academic", keywords:"college law"},
-  {id:crypto.randomUUID(), name:"COLLEGE OF LAW LIBRARY", local:"324", phone:"", building:"SV BUILDING", category:"Library", keywords:"college law library"},
-  {id:crypto.randomUUID(), name:"COMPUTER SCIENCE DEPT.", local:"305", phone:"", building:"SV BUILDING", category:"Academic", keywords:"computer science department"},
-  {id:crypto.randomUUID(), name:"FALCONS NEST", local:"139", phone:"", building:"SV BUILDING", category:"Food", keywords:"falcons nest"},
-  {id:crypto.randomUUID(), name:"GRADUATE SCHOOL DEANS OFFICE", local:"317", phone:"8522-0016", building:"SV BUILDING", category:"Academic", keywords:"graduate school dean office"},
-  {id:crypto.randomUUID(), name:"GRADUATE SCHOOL FACULTY ROOM", local:"334", phone:"", building:"SV BUILDING", category:"Faculty", keywords:"graduate school faculty room"},
-  {id:crypto.randomUUID(), name:"GRADUATE SCHOOL LIBRARY", local:"313", phone:"", building:"SV BUILDING", category:"Library", keywords:"graduate school library"},
-  {id:crypto.randomUUID(), name:"I.T. & M.", local:"335", phone:"", building:"SV BUILDING", category:"IT", keywords:"it m"},
-  {id:crypto.randomUUID(), name:"OFFICE FOR ATHLETIC DEVELOPMENT", local:"304", phone:"", building:"SV BUILDING", category:"Athletics", keywords:"office athletic development"},
-  {id:crypto.randomUUID(), name:"OFFICE FOR INSTITUTIONAL ADVANCEMENT", local:"314", phone:"", building:"SV BUILDING", category:"Administration", keywords:"office institutional advancement"},
-  {id:crypto.randomUUID(), name:"O.V.I.M / VINCENTIAN CENTER", local:"315", phone:"8521-7835", building:"SV BUILDING", category:"Administration", keywords:"ovim vincentian center"},
-  {id:crypto.randomUUID(), name:"PHYSICAL EDUCATION DEPT", local:"320", phone:"", building:"SV BUILDING", category:"Athletics", keywords:"physical education department"},
-  {id:crypto.randomUUID(), name:"COLLEGE OF PHARMACY", local:"", phone:"8522-7951", building:"SV BUILDING", category:"Academic", keywords:"college pharmacy"},
-  {id:crypto.randomUUID(), name:"BASIC EDUCATION DEPARTMENT", local:"", phone:"8523-5784", building:"SV BUILDING", category:"Academic", keywords:"basic education department"},
-  {id:crypto.randomUUID(), name:"GUIDANCE & PLACEMENT", local:"", phone:"8523-2596", building:"SV BUILDING", category:"Guidance", keywords:"guidance placement"},
-];
-
-let data = loadData();
+let data = [];
 let sortKey = "name";
 let sortDir = "asc";
 
 const tbody = document.getElementById("tbody");
+const cards = document.getElementById("cards");
 const metaLine = document.getElementById("metaLine");
 const searchInput = document.getElementById("searchInput");
 const clearBtn = document.getElementById("clearBtn");
-const addBtn = document.getElementById("addBtn");
-const exportBtn = document.getElementById("exportBtn");
-const importBtn = document.getElementById("importBtn");
-const importFile = document.getElementById("importFile");
-const resetBtn = document.getElementById("resetBtn");
+const refreshBtn = document.getElementById("refreshBtn");
 const categoryFilter = document.getElementById("categoryFilter");
-const buildingFilter = document.getElementById("buildingFilter");
 
-const modalBackdrop = document.getElementById("modalBackdrop");
-const modalTitle = document.getElementById("modalTitle");
-const closeModalBtn = document.getElementById("closeModalBtn");
-const cancelBtn = document.getElementById("cancelBtn");
-const saveBtn = document.getElementById("saveBtn");
-const mName = document.getElementById("mName");
-const mLocal = document.getElementById("mLocal");
-const mPhone = document.getElementById("mPhone");
-const mBuilding = document.getElementById("mBuilding");
-const mCategory = document.getElementById("mCategory");
-const mKeywords = document.getElementById("mKeywords");
+function normalize(str){ return (str ?? "").toString().toLowerCase(); }
 
-let editingId = null;
-
-function loadData(){
-  try{
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if(!raw) return structuredClone(SEED);
-    const parsed = JSON.parse(raw);
-    if(!Array.isArray(parsed)) return structuredClone(SEED);
-    return parsed;
-  }catch{
-    return structuredClone(SEED);
-  }
+async function fetchDirectory(){
+  const res = await fetch(API_URL, { cache: "no-store" });
+  if(!res.ok) throw new Error("Failed to load directory");
+  const json = await res.json();
+  return Array.isArray(json.data) ? json.data : [];
 }
 
-function saveData(){
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(data, null, 2));
-  refreshFilters();
-  render();
+function escapeHtml(str){
+  return (str ?? "")
+    .toString()
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;");
 }
 
-function normalize(str){
-  return (str ?? "").toString().toLowerCase();
+function refreshCategoryOptions(){
+  const current = categoryFilter.value;
+  const cats = Array.from(new Set(data.map(x=>x.category).filter(Boolean)))
+    .sort((a,b)=>a.localeCompare(b));
+  categoryFilter.innerHTML = `<option value="">All</option>` +
+    cats.map(c=>`<option value="${escapeHtml(c)}">${escapeHtml(c)}</option>`).join("");
+  if(cats.includes(current)) categoryFilter.value = current;
 }
 
 function filteredData(){
-  const q = normalize(searchInput.value).trim();
+  const qRaw = normalize(searchInput.value).trim();
   const cat = categoryFilter.value;
-  const bld = buildingFilter.value;
+
+  // multi-keyword AND search
+  const tokens = qRaw ? qRaw.split(/\s+/).filter(Boolean) : [];
 
   return data.filter(row=>{
     const hay = [
-      row.name, row.local, row.phone, row.building, row.category, row.keywords
+      row.name, row.local, row.phone, row.building, row.category, row.notes
     ].map(normalize).join(" | ");
 
-    const matchQ = q ? hay.includes(q) : true;
-    const matchCat = cat ? (row.category || "") === cat : true;
-    const matchBld = bld ? (row.building || "") === bld : true;
-    return matchQ && matchCat && matchBld;
+    const matchTokens = tokens.length ? tokens.every(t => hay.includes(t)) : true;
+    const matchCat = cat ? ((row.category || "") === cat) : true;
+    return matchTokens && matchCat;
   });
 }
 
@@ -595,52 +298,11 @@ function sortRows(rows){
     const bv = (b[sortKey] ?? "").toString();
 
     if(sortKey === "local"){
-      const an = parseInt(av,10);
-      const bn = parseInt(bv,10);
+      const an = parseInt(av,10), bn = parseInt(bv,10);
       if(!Number.isNaN(an) && !Number.isNaN(bn)) return (an - bn) * dir;
     }
     return av.localeCompare(bv, undefined, {numeric:true, sensitivity:"base"}) * dir;
   });
-}
-
-function render(){
-  const rows = sortRows(filteredData());
-  tbody.innerHTML = "";
-
-  for(const row of rows){
-    const tr = document.createElement("tr");
-
-    tr.appendChild(tdText(row.name));
-    tr.appendChild(tdText(row.local));
-    tr.appendChild(tdText(row.phone));
-    tr.appendChild(tdText(row.building));
-    tr.appendChild(tdCategory(row.category));
-
-    const tdA = document.createElement("td");
-    tdA.className = "actions";
-    const edit = document.createElement("button");
-    edit.className = "btn small";
-    edit.textContent = "Edit";
-    edit.onclick = ()=>openModal("edit", row.id);
-
-    const del = document.createElement("button");
-    del.className = "btn small danger";
-    del.textContent = "Delete";
-    del.onclick = ()=>{
-      if(confirm(`Delete "${row.name}"?`)){
-        data = data.filter(x=>x.id !== row.id);
-        saveData();
-      }
-    };
-
-    tdA.appendChild(edit);
-    tdA.appendChild(del);
-    tr.appendChild(tdA);
-
-    tbody.appendChild(tr);
-  }
-
-  metaLine.textContent = `Showing ${rows.length} of ${data.length} entries`;
 }
 
 function tdText(val){
@@ -648,112 +310,113 @@ function tdText(val){
   td.textContent = val ?? "";
   return td;
 }
-
 function tdCategory(val){
   const td = document.createElement("td");
-  if(val){
-    const span = document.createElement("span");
-    span.className = "pill";
-    span.textContent = val;
-    td.appendChild(span);
-  }else{
-    td.textContent = "";
-  }
+  td.innerHTML = val ? `<span class="pill">${escapeHtml(val)}</span>` : "";
   return td;
 }
 
-function refreshFilters(){
-  const currentCat = categoryFilter.value;
-  const currentBld = buildingFilter.value;
-  
-  const cats = Array.from(new Set(data.map(x=>x.category).filter(Boolean))).sort((a,b)=>a.localeCompare(b));
-  categoryFilter.innerHTML = `<option value="">All Categories</option>` + cats.map(c=>`<option value="${escapeHtml(c)}">${escapeHtml(c)}</option>`).join("");
-  if(cats.includes(currentCat)) categoryFilter.value = currentCat;
-  
-  const blds = Array.from(new Set(data.map(x=>x.building).filter(Boolean))).sort((a,b)=>a.localeCompare(b));
-  buildingFilter.innerHTML = `<option value="">All Buildings</option>` + blds.map(b=>`<option value="${escapeHtml(b)}">${escapeHtml(b)}</option>`).join("");
-  if(blds.includes(currentBld)) buildingFilter.value = currentBld;
-}
+function render(){
+  const rows = sortRows(filteredData());
+  metaLine.textContent = `Showing all entries (${rows.length} total)`;
 
-function escapeHtml(str){
-  return (str ?? "").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;");
-}
-
-function openModal(mode, id=null){
-  editingId = null;
-
-  if(mode === "add"){
-    modalTitle.textContent = "Add Office";
-    mName.value = "";
-    mLocal.value = "";
-    mPhone.value = "";
-    mBuilding.value = "";
-    mCategory.value = "";
-    mKeywords.value = "";
-  }else{
-    const row = data.find(x=>x.id === id);
-    if(!row) return;
-    editingId = id;
-    modalTitle.textContent = "Edit Office";
-    mName.value = row.name ?? "";
-    mLocal.value = row.local ?? "";
-    mPhone.value = row.phone ?? "";
-    mBuilding.value = row.building ?? "";
-    mCategory.value = row.category ?? "";
-    mKeywords.value = row.keywords ?? "";
+  // Desktop table
+  tbody.innerHTML = "";
+  for(const row of rows){
+    const tr = document.createElement("tr");
+    tr.appendChild(tdText(row.name));
+    tr.appendChild(tdText(row.local));
+    tr.appendChild(tdText(row.phone));
+    tr.appendChild(tdText(row.building));
+    tr.appendChild(tdCategory(row.category));
+    tbody.appendChild(tr);
   }
 
-  modalBackdrop.style.display = "flex";
-  setTimeout(()=>mName.focus(), 0);
-}
+  // Mobile cards
+  cards.innerHTML = "";
+  for(const row of rows){
+    const div = document.createElement("div");
+    div.className = "card";
 
-function closeModal(){
-  modalBackdrop.style.display = "none";
-}
+    const phoneClean = (row.phone ?? "").toString().replace(/\s+/g,"");
+    const phoneHtml = row.phone
+      ? `<a href="tel:${escapeHtml(phoneClean)}" style="text-decoration:none;color:inherit;">${escapeHtml(row.phone)}</a>`
+      : "";
 
-function saveModal(){
-  const name = mName.value.trim();
-  if(!name){
-    alert("Office/Department Name is required.");
-    mName.focus();
-    return;
+    div.innerHTML = `
+      <div class="name">${escapeHtml(row.name || "")}</div>
+      <div class="grid">
+        <div class="kv"><div class="k">Local</div><div class="v">${escapeHtml(row.local || "")}</div></div>
+        <div class="kv"><div class="k">Phone</div><div class="v">${phoneHtml}</div></div>
+        <div class="kv"><div class="k">Building</div><div class="v">${escapeHtml(row.building || "")}</div></div>
+        <div class="kv"><div class="k">Category</div><div class="v">${row.category ? `<span class="pill">${escapeHtml(row.category)}</span>` : ""}</div></div>
+      </div>
+
+      <div class="bottom">
+        <div style="font-size:12px;color:#666;">${row.phone ? "Tap Phone to Call" : ""}</div>
+        <button class="btn" style="height:auto;padding:8px 10px;" data-copy="${escapeHtml(row.local || "")}">Copy Local</button>
+      </div>
+    `;
+
+    cards.appendChild(div);
+
+    const copyBtn = div.querySelector('button[data-copy]');
+    if(copyBtn){
+      copyBtn.addEventListener("click", async ()=>{
+        const v = (copyBtn.getAttribute("data-copy") || "").trim();
+        if(!v) return alert("No local number to copy.");
+        try{
+          await navigator.clipboard.writeText(v);
+          copyBtn.textContent = "Copied!";
+          setTimeout(()=>copyBtn.textContent="Copy Local", 900);
+        }catch{
+          alert("Copy failed. Your browser may block clipboard.");
+        }
+      });
+    }
   }
-
-  const payload = {
-    name,
-    local: mLocal.value.trim(),
-    phone: mPhone.value.trim(),
-    building: mBuilding.value.trim(),
-    category: mCategory.value.trim(),
-    keywords: mKeywords.value.trim(),
-  };
-
-  if(editingId){
-    data = data.map(x=> x.id === editingId ? {...x, ...payload} : x);
-  }else{
-    data = [{ id: crypto.randomUUID(), ...payload }, ...data];
-  }
-  saveData();
-  closeModal();
 }
 
+async function loadAndRender(){
+  try{
+    metaLine.textContent = "Loading directory...";
+    const rows = await fetchDirectory();
+
+    // Normalize keys + ensure strings (safe)
+    data = rows.map(r => ({
+      name: r.name ?? "",
+      local: r.local ?? "",
+      phone: r.phone ?? "",
+      building: r.building ?? "",
+      category: r.category ?? "",
+      notes: r.notes ?? ""
+    }));
+
+    refreshCategoryOptions();
+    render();
+  }catch(e){
+    metaLine.textContent = "Cannot load directory. Check API_URL / Apps Script access.";
+    data = [];
+    refreshCategoryOptions();
+    render();
+  }
+}
+
+/* Events */
 searchInput.addEventListener("input", render);
 categoryFilter.addEventListener("change", render);
-buildingFilter.addEventListener("change", render);
 
 clearBtn.onclick = ()=>{
   searchInput.value = "";
   categoryFilter.value = "";
-  buildingFilter.value = "";
   render();
 };
 
-addBtn.onclick = ()=>openModal("add");
+refreshBtn.onclick = ()=>loadAndRender();
 
 document.querySelectorAll("thead th[data-key]").forEach(th=>{
   th.addEventListener("click", ()=>{
     const key = th.getAttribute("data-key");
-    if(key === "_actions") return;
     if(sortKey === key){
       sortDir = (sortDir === "asc") ? "desc" : "asc";
     }else{
@@ -764,61 +427,8 @@ document.querySelectorAll("thead th[data-key]").forEach(th=>{
   });
 });
 
-closeModalBtn.onclick = closeModal;
-cancelBtn.onclick = closeModal;
-modalBackdrop.addEventListener("click", (e)=>{
-  if(e.target === modalBackdrop) closeModal();
-});
-saveBtn.onclick = saveModal;
-
-exportBtn.onclick = ()=>{
-  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = "adamson_directory.json";
-  a.click();
-  URL.revokeObjectURL(url);
-};
-
-importBtn.onclick = ()=> importFile.click();
-importFile.onchange = async ()=>{
-  const file = importFile.files?.[0];
-  importFile.value = "";
-  if(!file) return;
-  try{
-    const text = await file.text();
-    const parsed = JSON.parse(text);
-    if(!Array.isArray(parsed)) throw new Error("JSON must be an array of entries.");
-    data = parsed.map(x=>({
-      id: x.id || crypto.randomUUID(),
-      name: x.name ?? "",
-      local: x.local ?? "",
-      phone: x.phone ?? "",
-      building: x.building ?? "",
-      category: x.category ?? "",
-      keywords: x.keywords ?? ""
-    })).filter(x=>x.name.trim().length > 0);
-
-    saveData();
-    alert("Import successful!");
-  }catch(err){
-    alert("Import failed: " + err.message);
-  }
-};
-
-resetBtn.onclick = ()=>{
-  if(confirm("Reset directory to original data? This will remove your saved edits.")){
-    data = structuredClone(SEED);
-    localStorage.removeItem(STORAGE_KEY);
-    refreshFilters();
-    render();
-    alert("Directory has been reset to original data.");
-  }
-};
-
-refreshFilters();
-render();
+/* Init */
+loadAndRender();
 </script>
 </body>
 </html>
